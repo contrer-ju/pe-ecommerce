@@ -1,0 +1,417 @@
+/* Flexible Box Layouts */
+
+.flexColumnRowFlexStart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.flexColumnRowSpaceBetween {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flexColumnRowCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexRowFlexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexRowSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexRowSpaceAround {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flexRowSpaceAround2 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flexRowFlexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flexRowCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridRowSpaceBetween {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto;
+  grid-gap: 0.1rem;
+  align-items: center;
+  grid-template-areas:
+    "leftElement rightElement"
+    "centerElement centerElement";
+}
+
+.gridRowSpaceBetweenLeftElement {
+  grid-area: leftElement;
+  justify-self: flex-start;
+}
+
+.gridRowSpaceBetweenRightElement {
+  grid-area: rightElement;
+  justify-self: flex-end;
+}
+
+.gridRowSpaceBetweenCenterElement {
+  grid-area: centerElement;
+  justify-self: center;
+}
+
+.gridRowSpaceAround {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto;
+  grid-gap: 0.1rem;
+  align-items: center;
+  grid-template-areas:
+    "leftElement centerElement"
+    "rightElement rightElement";
+}
+
+.gridRowSpaceAroundLeftElement {
+  grid-area: leftElement;
+  justify-self: flex-start;
+}
+
+.gridRowSpaceAroundRightElement {
+  grid-area: rightElement;
+  justify-self: flex-end;
+}
+
+.gridRowSpaceAroundCenterElement {
+  grid-area: centerElement;
+  justify-self: flex-end;
+}
+
+/* Elements Layout*/
+
+.mainLayout {
+  width: 90%;
+  margin: auto;
+}
+
+.boxLayout {
+  width: 100%;
+}
+
+.subBoxLayout {
+  width: 100%;
+}
+
+.screenLayout {
+  height: 100vh;
+  width: auto;
+}
+
+.textLayout {
+  width: 90%;
+}
+
+/* Spaces between and around its Elements  */
+
+.paddingTopRightBottomLeft {
+  padding: 0.7rem 0.3rem;
+}
+
+.paddingTopRightBottomLeft2 {
+  padding: 0.1rem 1rem;
+}
+
+.paddingTopRightBottomLeft3 {
+  padding: 0.1rem 0.3rem;
+  margin: 0.1rem 0rem;
+}
+
+.paddingTopRightBottomLeft4 {
+  padding: 0.1rem 0.3rem;
+  margin: 0.1rem 0rem 1rem 0rem;
+}
+
+.paddingTopRightBottomLeft5 {
+  padding: 0rem 5rem;
+  margin: 0rem 0rem 1rem 0rem;
+}
+
+.paddingRightLeft1 {
+  padding: 0rem 0.25rem;
+}
+
+.paddingRightLeft2 {
+  padding: 0rem 0.5rem;
+}
+
+.paddingTopBottom {
+  padding: 0.7rem 0rem;
+}
+
+.paddingTop {
+  padding: 0.5rem 0rem 0rem 0rem;
+}
+
+.paddingBottom1 {
+  padding: 0rem 0rem 1.5rem 0rem;
+}
+
+.paddingBottom2 {
+  padding: 0rem 0rem 0.2rem 0rem;
+}
+
+.paddingBottom3 {
+  padding: 0rem 0rem 0.7rem 0rem;
+}
+
+.paddingLeft {
+  padding: 0rem 0rem 0rem 1rem;
+}
+
+.paddingRight {
+  padding: 0% 5% 0% 0%;
+}
+
+.marginTop {
+  margin-top: 6rem;
+}
+
+.marginBottom1 {
+  margin: 0rem 0rem 0.5rem 0rem;
+}
+
+.marginBottom2 {
+  margin: 0rem 0rem 0rem 0rem;
+}
+
+/* Text and Link Modifiers*/
+
+.greenText {
+  font-weight: bold;
+  color: green;
+}
+
+.redText {
+  font-weight: bold;
+  color: red;
+}
+
+.textNormal {
+  font-weight: normal;
+}
+
+.textBold {
+  font-weight: bold;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.noneDecorationLink {
+  color: black;
+  text-decoration: none;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.level1Title {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.level2Title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.level3Title {
+  font-size: 1.2rem;
+}
+
+/* Tooltip*/
+
+.tooltip_container {
+  width: 14rem;
+  background-color: #555;
+  color: #fff;
+  padding: 0.25rem 0;
+  border-radius: 6px;
+  text-align: center;
+  margin-left: 1rem;
+  margin-top: 0.3rem;
+  transition: opacity 0.85s;
+  z-index: 1;
+}
+
+.tooltip_hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Other Styles */
+
+.inputBox {
+  display: inline-block;
+  padding: 0.1rem 1.5rem;
+  line-height: 0.4rem;
+  color: dimgray;
+}
+
+.bottomLine {
+  border-bottom: solid 1.5px;
+  padding-bottom: 0.5rem;
+}
+
+.stickyPosition {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 98%;
+  margin: auto;
+  background-color: whitesmoke;
+}
+
+.coverBook {
+  width: 4.2rem;
+  height: 7rem;
+  margin-right: 0.75rem;
+  object-fit: cover;
+}
+
+.spinnerSize {
+  width: auto;
+  height: 1.7rem;
+}
+
+.errorImage {
+  width: 22rem;
+  height: auto;
+}
+
+/* Media Query */
+@media (min-width: 1280px) {
+  /* Flexible Box Layouts */
+
+  .flexColumnRowFlexStart {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .flexColumnRowSpaceBetween {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .flexColumnRowCenter {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .gridRowSpaceBetween {
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: auto;
+    grid-template-areas: "leftElement centerElement rightElement";
+  }
+
+  .gridRowSpaceAround {
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    grid-template-areas: "leftElement centerElement rightElement";
+  }
+
+  .gridRowSpaceAroundCenterElement {
+    justify-self: center;
+  }
+
+  /* Elements Layout*/
+
+  .boxLayout {
+    width: 45%;
+  }
+
+  .screenLayout {
+    width: 70%;
+  }
+
+  /* Spaces between and around its Elements  */
+
+  .paddingTopRightBottomLeft {
+    padding: 0.7rem 2rem;
+  }
+
+  .paddingTopRightBottomLeft3 {
+    padding: 0.7rem 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .paddingTopRightBottomLeft4 {
+    padding: 0.7rem 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .paddingTopRightBottomLeft5 {
+    padding: 0.7rem 7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .marginTop {
+    margin-top: 4.5rem;
+  }
+
+  /* Text and Link Modifiers*/
+
+  .level1Title {
+    font-size: 1.7rem;
+  }
+
+  /* Tooltip*/
+
+  .tooltip_container {
+    width: 12rem;
+  }
+
+  /* Other Styles */
+
+  .inputBox {
+    padding: 0.1rem 7rem;
+  }
+
+  .coverBook {
+    height: 6rem;
+    margin-right: 1rem;
+  }
+
+  .errorImage {
+    width: auto;
+    height: auto;
+  }
+}
