@@ -54,6 +54,10 @@ function App() {
     setATotalShopping,
     isUpperLimitItemInStock,
     setAUpperLimitItemInStock,
+    isLowerLimitItemInStock,
+    setALowerLimitItemInStock,
+    idItemToRemoveFromCart,
+    setAIdItemToRemoveFromCart,
   } = useShopingCart();
 
   useEffect(() => {
@@ -67,14 +71,36 @@ function App() {
 
   useEffect(() => {
     if (isUpperLimitItemInStock) {
-      onOffTooltips(shopingCart, setAShopingCart);
-      setAUpperLimitItemInStock(false);
+      const interval = setInterval(() => {
+        onOffTooltips(shopingCart, setAShopingCart);
+        setAUpperLimitItemInStock(false);
+      }, 1000);
+      return () => clearInterval(interval);
     }
   }, [
     isUpperLimitItemInStock,
     shopingCart,
     setAShopingCart,
     setAUpperLimitItemInStock,
+  ]);
+
+  useEffect(() => {
+    if (isLowerLimitItemInStock) {
+      const interval = setInterval(() => {
+        onDeleteFromCart(idItemToRemoveFromCart, shopingCart, setAShopingCart);
+        setALowerLimitItemInStock(false);
+        setAIdItemToRemoveFromCart(null);
+      }, 600);
+      return () => clearInterval(interval);
+    }
+  }, [
+    isLowerLimitItemInStock,
+    shopingCart,
+    setAShopingCart,
+    setAUpperLimitItemInStock,
+    idItemToRemoveFromCart,
+    setALowerLimitItemInStock,
+    setAIdItemToRemoveFromCart,
   ]);
 
   return (
@@ -160,6 +186,8 @@ function App() {
                 onIncrementItemOnCart,
                 onDecrementItemOnCart,
                 setAUpperLimitItemInStock,
+                setALowerLimitItemInStock,
+                setAIdItemToRemoveFromCart,
               }}
             />
           }

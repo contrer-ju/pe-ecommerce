@@ -3,7 +3,9 @@ export default function onDecrementItemOnCart(
   shopingCart,
   setAShopingCart,
   searchResult,
-  setASearchResult
+  setASearchResult,
+  setALowerLimitItemInStock,
+  setAIdItemToRemoveFromCart
 ) {
   const inventory = JSON.parse(JSON.stringify(searchResult));
   const aShopingCart = JSON.parse(JSON.stringify(shopingCart));
@@ -21,14 +23,10 @@ export default function onDecrementItemOnCart(
 
   for (let i = 0; i < aShopingCart.length; i++)
     if (aShopingCart[i].id === itemId) {
-      aShopingCart[i].qtySelected -= 1;
+      if (aShopingCart[i].qtySelected > 0) aShopingCart[i].qtySelected -= 1;
       if (aShopingCart[i].qtySelected === 0) {
-        aShopingCart.splice(i, 1);
-        const date = Date.now();
-        let currentDate = null;
-        do {
-          currentDate = Date.now();
-        } while (currentDate - date < 300);
+        setALowerLimitItemInStock(true);
+        setAIdItemToRemoveFromCart(aShopingCart[i].id);
       }
       if (itemOnInventory.availability) {
         inventory[itemOnInventory.index].qtyStock += 1;

@@ -21,6 +21,8 @@ export default function Cart({
   onIncrementItemOnCart,
   onDecrementItemOnCart,
   setAUpperLimitItemInStock,
+  setALowerLimitItemInStock,
+  setAIdItemToRemoveFromCart,
 }) {
   return (
     <div className="marginTop">
@@ -105,7 +107,9 @@ export default function Cart({
                       shopingCart,
                       setAShopingCart,
                       searchResult,
-                      setASearchResult
+                      setASearchResult,
+                      setALowerLimitItemInStock,
+                      setAIdItemToRemoveFromCart
                     )
                   }
                 />

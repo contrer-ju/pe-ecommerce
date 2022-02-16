@@ -3,11 +3,6 @@ export default function onOffTooltips(shopingCart, setAShopingCart) {
 
   for (let i = 0; i < aShopingCart.length; i++)
     aShopingCart[i].showTooltip = false;
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < 550);
 
   setAShopingCart(aShopingCart);
 }
