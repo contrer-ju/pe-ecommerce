@@ -24,6 +24,9 @@ import "./Styles.css";
 
 function App() {
   const {
+    apiErrorStatus,
+    setAnApiErrorStatus,
+    setAnApiErrorMessage,
     isLoading,
     setTrueIsLoading,
     setFalseIsLoading,
@@ -123,6 +126,8 @@ function App() {
           setAProductQtySelected,
           onClearSelectedItem,
           isShopingCartEmpty,
+          setAnApiErrorStatus,
+          setAnApiErrorMessage,
         }}
       />
       <Routes>
@@ -135,6 +140,7 @@ function App() {
                 searchResult,
                 setASearchResult,
                 isLoading,
+                apiErrorStatus,
                 timeLoading,
                 setAProductToShow,
                 onAddToCart,
@@ -188,6 +194,8 @@ function App() {
                 setAUpperLimitItemInStock,
                 setALowerLimitItemInStock,
                 setAIdItemToRemoveFromCart,
+                setAnApiErrorStatus,
+                setAnApiErrorMessage,
               }}
             />
           }

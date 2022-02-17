@@ -23,6 +23,8 @@ export default function Cart({
   setAUpperLimitItemInStock,
   setALowerLimitItemInStock,
   setAIdItemToRemoveFromCart,
+  setAnApiErrorStatus,
+  setAnApiErrorMessage,
 }) {
   return (
     <div className="marginTop">
@@ -40,6 +42,8 @@ export default function Cart({
             setAProductInitStock(0);
             setAProductQtySelected(0);
             setAShopingCart([]);
+            setAnApiErrorStatus(false);
+            setAnApiErrorMessage(null);
           }}
         />
       </div>

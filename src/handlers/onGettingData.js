@@ -7,7 +7,9 @@ export default async function onGettingData(
   setFalseIsLoading,
   setASearchResult,
   phraseSearch,
-  setATimeLoading
+  setATimeLoading,
+  setAnApiErrorStatus,
+  setAnApiErrorMessage
 ) {
   const startTime = performance.now();
   setTrueIsLoading();
@@ -16,7 +18,8 @@ export default async function onGettingData(
     const response = await axios.get(search_API_URL + mappingPhraseSearch);
     onMappingData(response.data.docs, setASearchResult);
   } catch (error) {
-    console.error(error);
+    setAnApiErrorStatus(true);
+    setAnApiErrorMessage(error);
   } finally {
     const endTime = performance.now();
     setATimeLoading(((endTime - startTime) * 0.001).toFixed(1));

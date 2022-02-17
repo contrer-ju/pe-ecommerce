@@ -23,6 +23,8 @@ export default function NavBar({
   setAProductQtySelected,
   onClearSelectedItem,
   isShopingCartEmpty,
+  setAnApiErrorStatus,
+  setAnApiErrorMessage,
 }) {
   const navigate = useNavigate();
   const goToShopLink = useCallback(() => navigate("/shop"), [navigate]);
@@ -40,6 +42,8 @@ export default function NavBar({
               setAProductToShow({});
               setAProductInitStock(0);
               setAProductQtySelected(0);
+              setAnApiErrorStatus(false);
+              setAnApiErrorMessage(null);
             }}
             to="/"
           >
@@ -61,13 +65,16 @@ export default function NavBar({
                 setAProductToShow({});
                 setAProductInitStock(0);
                 setAProductQtySelected(0);
+                setAnApiErrorStatus(false);
                 onGettingData(
                   onMappingData,
                   setTrueIsLoading,
                   setFalseIsLoading,
                   setASearchResult,
                   phraseSearch,
-                  setATimeLoading
+                  setATimeLoading,
+                  setAnApiErrorStatus,
+                  setAnApiErrorMessage
                 );
                 goToShopLink();
               }
@@ -82,13 +89,16 @@ export default function NavBar({
               setAProductToShow({});
               setAProductInitStock(0);
               setAProductQtySelected(0);
+              setAnApiErrorStatus(false);
               onGettingData(
                 onMappingData,
                 setTrueIsLoading,
                 setFalseIsLoading,
                 setASearchResult,
                 phraseSearch,
-                setATimeLoading
+                setATimeLoading,
+                setAnApiErrorStatus,
+                setAnApiErrorMessage
               );
               goToShopLink();
             }}
