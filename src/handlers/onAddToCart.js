@@ -5,11 +5,14 @@ export default function onAddToCart(
   shopingCart,
   setAShopingCart,
   setAProductInitStock,
-  setAProductQtySelected
+  setAProductQtySelected,
+  stock,
+  updateStock
 ) {
   if (selectedItem.qtySelected !== 0) {
     const newShopingCart = JSON.parse(JSON.stringify(shopingCart));
-    const inventory = JSON.parse(JSON.stringify(searchResult));
+    const aSearchResult = JSON.parse(JSON.stringify(searchResult));
+    const inventory = JSON.parse(JSON.stringify(stock));
 
     if (
       newShopingCart.find((item) => item.id === selectedItem.id) === undefined
@@ -30,16 +33,23 @@ export default function onAddToCart(
     }
     setAShopingCart(newShopingCart);
 
+    const itemIndexOnSearchResult = aSearchResult.findIndex(
+      (item) => item.id === selectedItem.id
+    );
+
+    setAProductInitStock(aSearchResult[itemIndexOnSearchResult].qtyStock);
+    setAProductQtySelected(0);
+    aSearchResult[itemIndexOnSearchResult].initStock =
+      aSearchResult[itemIndexOnSearchResult].qtyStock;
+    aSearchResult[itemIndexOnSearchResult].qtySelected = 0;
+    setASearchResult(aSearchResult);
+
     const itemIndexOnInventory = inventory.findIndex(
       (item) => item.id === selectedItem.id
     );
 
-    if (setAProductInitStock !== undefined)
-      setAProductInitStock(inventory[itemIndexOnInventory].qtyStock);
-    if (setAProductQtySelected !== undefined) setAProductQtySelected(0);
-    inventory[itemIndexOnInventory].initStock =
-      inventory[itemIndexOnInventory].qtyStock;
-    inventory[itemIndexOnInventory].qtySelected = 0;
-    setASearchResult(inventory);
+    inventory[itemIndexOnInventory].stock =
+      aSearchResult[itemIndexOnSearchResult].qtyStock;
+    updateStock(inventory);
   }
 }

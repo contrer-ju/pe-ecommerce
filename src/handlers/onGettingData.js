@@ -9,14 +9,21 @@ export default async function onGettingData(
   phraseSearch,
   setATimeLoading,
   setAnApiErrorStatus,
-  setAnApiErrorMessage
+  setAnApiErrorMessage,
+  stock,
+  updateStock
 ) {
   const startTime = performance.now();
   setTrueIsLoading();
   const mappingPhraseSearch = phraseSearch.replace(/ /g, "+");
   try {
     const response = await axios.get(search_API_URL + mappingPhraseSearch);
-    onMappingData(response.data.docs, setASearchResult);
+    onMappingData(
+      response.data.docs,
+      setASearchResult,
+      stock,
+      updateStock
+    );
   } catch (error) {
     setAnApiErrorStatus(true);
     setAnApiErrorMessage(error);

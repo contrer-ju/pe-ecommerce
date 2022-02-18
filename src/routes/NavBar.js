@@ -25,6 +25,8 @@ export default function NavBar({
   isShopingCartEmpty,
   setAnApiErrorStatus,
   setAnApiErrorMessage,
+  stock,
+  updateStock,
 }) {
   const navigate = useNavigate();
   const goToShopLink = useCallback(() => navigate("/shop"), [navigate]);
@@ -36,9 +38,6 @@ export default function NavBar({
           <Link
             className="flexRowFlexStart level1Title noneDecorationLink paddingRightLeft1"
             onClick={() => {
-              setAPhraseSearch("Find Your Book Here");
-              setASearchResult([]);
-              setATimeLoading(0);
               setAProductToShow({});
               setAProductInitStock(0);
               setAProductQtySelected(0);
@@ -74,7 +73,9 @@ export default function NavBar({
                   phraseSearch,
                   setATimeLoading,
                   setAnApiErrorStatus,
-                  setAnApiErrorMessage
+                  setAnApiErrorMessage,
+                  stock,
+                  updateStock
                 );
                 goToShopLink();
               }
@@ -98,7 +99,9 @@ export default function NavBar({
                 phraseSearch,
                 setATimeLoading,
                 setAnApiErrorStatus,
-                setAnApiErrorMessage
+                setAnApiErrorMessage,
+                stock,
+                updateStock
               );
               goToShopLink();
             }}

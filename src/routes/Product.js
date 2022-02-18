@@ -14,6 +14,8 @@ export default function Product({
   shopingCart,
   setAShopingCart,
   onAddToCart,
+  stock,
+  updateStock,
 }) {
   return (
     <div className="marginTop">
@@ -107,7 +109,9 @@ export default function Product({
                     shopingCart,
                     setAShopingCart,
                     setAProductInitStock,
-                    setAProductQtySelected
+                    setAProductQtySelected,
+                    stock,
+                    updateStock
                   )
                 }
               >

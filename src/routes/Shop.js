@@ -19,6 +19,9 @@ export default function Shop({
   shopingCart,
   setAShopingCart,
   setAProductInitStock,
+  setAProductQtySelected,
+  stock,
+  updateStock,
 }) {
   const navigate = useNavigate();
   const goToProductLink = useCallback(() => navigate("/product"), [navigate]);
@@ -121,7 +124,11 @@ export default function Shop({
                             searchResult,
                             setASearchResult,
                             shopingCart,
-                            setAShopingCart
+                            setAShopingCart,
+                            setAProductInitStock,
+                            setAProductQtySelected,
+                            stock,
+                            updateStock
                           )
                         }
                       >

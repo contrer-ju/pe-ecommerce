@@ -10,6 +10,8 @@ export default function Cart({
   setAPhraseSearch,
   searchResult,
   setASearchResult,
+  stock,
+  updateStock,
   setATimeLoading,
   setAProductToShow,
   setAProductInitStock,
@@ -25,6 +27,7 @@ export default function Cart({
   setAIdItemToRemoveFromCart,
   setAnApiErrorStatus,
   setAnApiErrorMessage,
+  onEmptyCart,
 }) {
   return (
     <div className="marginTop">
@@ -35,15 +38,19 @@ export default function Cart({
           src={trashDark}
           alt="Empty Item"
           onClick={() => {
-            setAPhraseSearch("Find Your Book Here");
-            setASearchResult([]);
-            setATimeLoading(0);
             setAProductToShow({});
             setAProductInitStock(0);
             setAProductQtySelected(0);
-            setAShopingCart([]);
             setAnApiErrorStatus(false);
             setAnApiErrorMessage(null);
+            onEmptyCart(
+              shopingCart,
+              setAShopingCart,
+              searchResult,
+              setASearchResult,
+              stock,
+              updateStock
+            );
           }}
         />
       </div>
@@ -112,6 +119,8 @@ export default function Cart({
                       setAShopingCart,
                       searchResult,
                       setASearchResult,
+                      stock,
+                      updateStock,
                       setALowerLimitItemInStock,
                       setAIdItemToRemoveFromCart
                     )
@@ -131,6 +140,8 @@ export default function Cart({
                       setAShopingCart,
                       searchResult,
                       setASearchResult,
+                      stock,
+                      updateStock,
                       setAUpperLimitItemInStock
                     )
                   }
@@ -141,7 +152,13 @@ export default function Cart({
                   src={trashLight}
                   alt="Empty Item"
                   onClick={() =>
-                    onDeleteFromCart(element.id, shopingCart, setAShopingCart)
+                    onDeleteFromCart(
+                      element.id,
+                      shopingCart,
+                      setAShopingCart,
+                      stock,
+                      updateStock
+                    )
                   }
                 />
               </div>

@@ -16,10 +16,12 @@ import onCalculateTotalShopping from "./handlers/onCalculateTotalShopping";
 import onIncrementItemOnCart from "./handlers/onIncrementItemOnCart";
 import onDecrementItemOnCart from "./handlers/onDecrementItemOnCart";
 import onOffTooltips from "./handlers/onOffTooltips";
+import onEmptyCart from "./handlers/onEmptyCart";
 import useGetData from "./hooks/useGetData";
 import usePhraseSearch from "./hooks/usePhraseSearch";
 import useProductPage from "./hooks/useProductPage";
 import useShopingCart from "./hooks/useShopingCart";
+import useStock from "./hooks/useStock";
 import "./Styles.css";
 
 function App() {
@@ -63,6 +65,8 @@ function App() {
     setAIdItemToRemoveFromCart,
   } = useShopingCart();
 
+  const { stock, updateStock } = useStock();
+
   useEffect(() => {
     if (shopingCart.length === 0) setIfShopingCartEmpty(true);
     else setIfShopingCartEmpty(false);
@@ -90,7 +94,13 @@ function App() {
   useEffect(() => {
     if (isLowerLimitItemInStock) {
       const interval = setInterval(() => {
-        onDeleteFromCart(idItemToRemoveFromCart, shopingCart, setAShopingCart);
+        onDeleteFromCart(
+          idItemToRemoveFromCart,
+          shopingCart,
+          setAShopingCart,
+          stock,
+          updateStock
+        );
         setALowerLimitItemInStock(false);
         setAIdItemToRemoveFromCart(null);
       }, 600);
@@ -104,6 +114,8 @@ function App() {
     idItemToRemoveFromCart,
     setALowerLimitItemInStock,
     setAIdItemToRemoveFromCart,
+    stock,
+    updateStock,
   ]);
 
   return (
@@ -128,6 +140,8 @@ function App() {
           isShopingCartEmpty,
           setAnApiErrorStatus,
           setAnApiErrorMessage,
+          stock,
+          updateStock,
         }}
       />
       <Routes>
@@ -149,6 +163,9 @@ function App() {
                 shopingCart,
                 setAShopingCart,
                 setAProductInitStock,
+                setAProductQtySelected,
+                stock,
+                updateStock,
               }}
             />
           }
@@ -169,6 +186,8 @@ function App() {
                 shopingCart,
                 setAShopingCart,
                 onAddToCart,
+                stock,
+                updateStock,
               }}
             />
           }
@@ -181,6 +200,8 @@ function App() {
                 setAPhraseSearch,
                 searchResult,
                 setASearchResult,
+                stock,
+                updateStock,
                 setATimeLoading,
                 setAProductToShow,
                 setAProductInitStock,
@@ -196,6 +217,7 @@ function App() {
                 setAIdItemToRemoveFromCart,
                 setAnApiErrorStatus,
                 setAnApiErrorMessage,
+                onEmptyCart,
               }}
             />
           }

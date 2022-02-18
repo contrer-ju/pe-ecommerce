@@ -4,30 +4,31 @@ export default function onIncrementItemOnCart(
   setAShopingCart,
   searchResult,
   setASearchResult,
+  stock,
+  updateStock,
   setAUpperLimitItemInStock
 ) {
-  const inventory = JSON.parse(JSON.stringify(searchResult));
+  const aSearchResult = JSON.parse(JSON.stringify(searchResult));
+  const inventory = JSON.parse(JSON.stringify(stock));
   const aShopingCart = JSON.parse(JSON.stringify(shopingCart));
-  const itemOnInventory = {
-    availability: false,
-    index: null,
-  };
 
-  for (let i = 0; i < inventory.length; i++) {
-    if (inventory[i].id === itemId) {
-      itemOnInventory.availability = true;
-      itemOnInventory.index = i;
-    }
-  }
+  const itemIndexOnSearchResult = aSearchResult.findIndex(
+    (item) => item.id === itemId
+  );
+  const itemIndexOnInventory = inventory.findIndex(
+    (item) => item.id === itemId
+  );
 
   for (let i = 0; i < aShopingCart.length; i++) {
     if (aShopingCart[i].id === itemId) {
-      if (itemOnInventory.availability && inventory[itemOnInventory.index].qtyStock > 0) {
+      if (inventory[itemIndexOnInventory].stock > 0) {
         aShopingCart[i].qtySelected += 1;
-        inventory[itemOnInventory.index].qtyStock -= 1;
-        inventory[itemOnInventory.index].initStock -= 1;
+        inventory[itemIndexOnInventory].stock -= 1;
+        aSearchResult[itemIndexOnSearchResult].initStock -= 1;
+        aSearchResult[itemIndexOnSearchResult].qtyStock -= 1;
+        setASearchResult(aSearchResult);
         setAShopingCart(aShopingCart);
-        setASearchResult(inventory);
+        updateStock(inventory);
         break;
       } else {
         aShopingCart[i].showTooltip = true;

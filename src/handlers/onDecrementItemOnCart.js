@@ -4,22 +4,21 @@ export default function onDecrementItemOnCart(
   setAShopingCart,
   searchResult,
   setASearchResult,
+  stock,
+  updateStock,
   setALowerLimitItemInStock,
   setAIdItemToRemoveFromCart
 ) {
-  const inventory = JSON.parse(JSON.stringify(searchResult));
+  const aSearchResult = JSON.parse(JSON.stringify(searchResult));
+  const inventory = JSON.parse(JSON.stringify(stock));
   const aShopingCart = JSON.parse(JSON.stringify(shopingCart));
-  const itemOnInventory = {
-    availability: false,
-    index: null,
-  };
 
-  for (let i = 0; i < inventory.length; i++) {
-    if (inventory[i].id === itemId) {
-      itemOnInventory.availability = true;
-      itemOnInventory.index = i;
-    }
-  }
+  const itemIndexOnSearchResult = aSearchResult.findIndex(
+    (item) => item.id === itemId
+  );
+  const itemIndexOnInventory = inventory.findIndex(
+    (item) => item.id === itemId
+  );
 
   for (let i = 0; i < aShopingCart.length; i++)
     if (aShopingCart[i].id === itemId) {
@@ -28,12 +27,12 @@ export default function onDecrementItemOnCart(
         setALowerLimitItemInStock(true);
         setAIdItemToRemoveFromCart(aShopingCart[i].id);
       }
-      if (itemOnInventory.availability) {
-        inventory[itemOnInventory.index].qtyStock += 1;
-        inventory[itemOnInventory.index].initStock += 1;
-        setASearchResult(inventory);
-      }
+      inventory[itemIndexOnInventory].stock += 1;
+      aSearchResult[itemIndexOnSearchResult].initStock += 1;
+      aSearchResult[itemIndexOnSearchResult].qtyStock += 1;
+      setASearchResult(aSearchResult);
+      updateStock(inventory);
+      setAShopingCart(aShopingCart);
       break;
     }
-  setAShopingCart(aShopingCart);
 }

@@ -1,5 +1,11 @@
-export default function onMappingData(data, setASearchResult) {
+export default function onMappingData(
+  data,
+  setASearchResult,
+  stock,
+  updateStock
+) {
   let booksArray = [];
+  const tempStock = JSON.parse(JSON.stringify(stock));
 
   for (let i = 0; i < data.length; i++) {
     booksArray.push({
@@ -29,7 +35,31 @@ export default function onMappingData(data, setASearchResult) {
       qtySelected: 0,
     });
     booksArray[i].qtyStock = booksArray[i].initStock;
+    if (tempStock.find((item) => item.id === booksArray[i].id) === undefined) {
+      tempStock.push({
+        author_name: booksArray[i].author_name,
+        title: booksArray[i].title,
+        id: booksArray[i].id,
+        publish_year: booksArray[i].publish_year,
+        publisher: booksArray[i].publisher,
+        isbn: booksArray[i].isbn,
+        subject: booksArray[i].subject,
+        price: booksArray[i].price,
+        initStock: booksArray[i].initStock,
+        stock: booksArray[i].initStock,
+      });
+    } else {
+      for (let j = 0; j < tempStock.length; j++) {
+        if (tempStock[j].id === booksArray[i].id) {
+          tempStock[j].price = booksArray[i].price;
+          tempStock[j].initStock = booksArray[i].initStock;
+          tempStock[j].stock = booksArray[i].initStock;
+          break;
+        }
+      }
+    }
   }
 
+  updateStock(tempStock);
   setASearchResult(booksArray);
 }
